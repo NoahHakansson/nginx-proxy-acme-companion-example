@@ -1,0 +1,12 @@
+---
+# Example using grafana
+version: '3.3'
+services:
+  grafana:
+    container_name: grafana
+    environment:
+      - VIRTUAL_HOST=othersubdomain.yourdomain.tld
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=othersubdomain.yourdomain.tld
+      - LETSENCRYPT_EMAIL=mail@yourdomain.tld
+    image: grafana/grafana

@@ -1,0 +1,12 @@
+---
+version: '3.3'
+services:
+  acme-companion:
+    container_name: nginx-proxy-acme
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - 'acme:/etc/acme.sh'
+    environment:
+      # add your email here
+      - DEFAULT_EMAIL=mail@yourdomain.tld
+    image: nginxproxy/acme-companion
