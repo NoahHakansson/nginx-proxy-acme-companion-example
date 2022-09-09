@@ -1,6 +1,6 @@
 ---
 # Example using grafana
-version: '3.3'
+version: '3'
 services:
   grafana:
     container_name: grafana

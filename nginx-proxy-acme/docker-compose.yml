@@ -1,12 +1,38 @@
 ---
-version: '3.3'
+version: '3'
+
+volumes:
+  certs:
+  vhost:
+  html:
+  acme:
+
 services:
+  nginx-proxy:
+    container_name: nginx-proxy
+    image: nginxproxy/nginx-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
   acme-companion:
     container_name: nginx-proxy-acme
     image: nginxproxy/acme-companion
+    depends_on:
+      - nginx-proxy
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - 'acme:/etc/acme.sh'
+      # from nginx-proxy
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      # end from nginx-proxy
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
     environment:
       # add your email here
       - DEFAULT_EMAIL=mail@yourdomain.tld
