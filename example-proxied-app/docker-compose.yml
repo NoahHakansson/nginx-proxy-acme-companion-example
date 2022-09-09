@@ -10,3 +10,8 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=othersubdomain.yourdomain.tld
       - LETSENCRYPT_EMAIL=mail@yourdomain.tld
+
+networks:
+  default:
+    name: nginx-proxy-acme_default
+    external: true
