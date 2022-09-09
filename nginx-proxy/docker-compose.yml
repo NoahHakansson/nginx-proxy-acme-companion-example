@@ -3,6 +3,7 @@ version: '3.3'
 services:
   nginx-proxy:
     container_name: nginx-proxy
+    image: nginxproxy/nginx-proxy
     ports:
       - '80:80'
       - '443:443'
@@ -11,4 +12,3 @@ services:
       - 'vhost:/etc/nginx/vhost.d'
       - 'html:/usr/share/nginx/html'
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
-    image: nginxproxy/nginx-proxy
