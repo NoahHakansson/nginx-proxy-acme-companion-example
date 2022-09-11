@@ -1,15 +1,24 @@
 ---
 # Example using grafana
 version: '3'
+
+volumes:
+  grafana-storage:
+
 services:
   grafana:
     container_name: grafana
-    image: grafana/grafana
+    image: grafana/grafana-oss
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
     environment:
       - VIRTUAL_HOST=othersubdomain.yourdomain.tld
-      - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=othersubdomain.yourdomain.tld
       - LETSENCRYPT_EMAIL=mail@yourdomain.tld
+      - GF_SECURITY_ADMIN_USER=“newuser”
+      - GF_SECURITY_ADMIN_PASSWORD=“atemporarynewpasswordofsomekind”
 
 networks:
   default:
