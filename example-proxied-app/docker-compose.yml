@@ -17,8 +17,8 @@ services:
       - VIRTUAL_HOST=othersubdomain.yourdomain.tld
       - LETSENCRYPT_HOST=othersubdomain.yourdomain.tld
       - LETSENCRYPT_EMAIL=mail@yourdomain.tld
-      - GF_SECURITY_ADMIN_USER=“newuser”
-      - GF_SECURITY_ADMIN_PASSWORD=“atemporarynewpasswordofsomekind”
+      - GF_SECURITY_ADMIN_USER=newuser
+      - GF_SECURITY_ADMIN_PASSWORD=atemporarynewpasswordofsomekind
 
 networks:
   default:
